@@ -5,6 +5,8 @@ from dateutil import tz
 from_zone = tz.gettz('UTC')
 to_zone = tz.gettz('Europe/Paris')
 
+ts = 34
+
 class UI:
 	def __init__(self):
 		self.gps = {"success":True,"fix":0,"timestamp":0, "latitude":0,"longitude":0,"altitude":0,"speed":0,"heading":0}
@@ -45,7 +47,7 @@ class UI:
 
 		sys.stdout.write("\033[001m")
 		sys.stdout.write("\x1b[38;2;245;179;66m")
-		sys.stdout.write("\n" + '='*10 +" Line " + '='*9+"\n")
+		sys.stdout.write("\n" + '='*ts +" Line " + '='*(ts-1)+"\n")
 		sys.stdout.write("\033[000m")
 
 		sys.stdout.write("Stops:\n")
@@ -56,7 +58,7 @@ class UI:
 
 		sys.stdout.write("\033[001m")
 		sys.stdout.write("\x1b[38;2;194;245;66m")
-		sys.stdout.write("\n" + '='*10 +" GPS " + '='*10+"\n")
+		sys.stdout.write("\n" + '='*ts +" GPS " + '='*ts+"\n")
 		sys.stdout.write("\033[000m")
 		print(f"Latitude:  {self.gps['latitude']:.6f} °")
 		print(f"Longitude: {self.gps['longitude']:.6f} °")
@@ -67,7 +69,7 @@ class UI:
 
 		sys.stdout.write("\033[001m")
 		sys.stdout.write("\x1b[38;2;66;245;99m")
-		sys.stdout.write("\n" + '='*8 +" Network " + '='*8+"\n")
+		sys.stdout.write("\n" + '='*(ts-2) +" Network " + '='*(ts-2)+"\n")
 		sys.stdout.write("\033[000m")
 		print(f"Connected users: {'👤'*(self.network['connected_devices']['devices']//4)} ({self.network['connected_devices']['devices']})")
 		print(f"Link quality:    {'⭐'*self.network['internet_link_quality']['quality']}")
